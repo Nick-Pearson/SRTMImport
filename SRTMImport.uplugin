@@ -1,0 +1,25 @@
+{
+	"FileVersion" : 3,
+	"Version" : 1,
+	"VersionName" : "1.0",
+	"FriendlyName" : "SRTM Import",
+	"Description" : "Plugin that allows importing SRTM heightmap data",
+	"Category" : "Importers",
+	"CreatedBy" : "Nick Pearson",
+	"CreatedByURL" : "http://npearson.co.uk",
+	"DocsURL" : "",
+	"MarketplaceURL" : "",
+	"SupportURL" : "",
+	"EnabledByDefault" : false,
+	"CanContainContent" : false,
+	"IsBetaVersion" : true,
+	"Installed" : false,
+	"Modules" :
+	[
+		{
+			"Name" : "SRTMImport",
+			"Type" : "Developer",
+			"LoadingPhase" : "Default"
+		}
+	]
+}
