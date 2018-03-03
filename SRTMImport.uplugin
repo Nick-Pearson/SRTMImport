@@ -19,7 +19,7 @@
 		{
 			"Name" : "SRTMImport",
 			"Type" : "Developer",
-			"LoadingPhase" : "Default"
+			"LoadingPhase" : "PostEngineInit"
 		}
 	]
 }

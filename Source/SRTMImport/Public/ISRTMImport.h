@@ -4,19 +4,7 @@
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
 
-
 class USRTMContainer;
-
-// indicates the behavior if not all requested data is available
-enum class EIncompleteDataHandling : uint8
-{
-	// Do not return any container object
-	RETURN_NULLPTR,
-
-	// Return all data that is available inside a container object
-	RETURN_AVAILIBLE,
-
-};
 
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules 
@@ -67,7 +55,7 @@ public:
 	*
 	* @return A valid container or nullptr if there was an error
 	*/
-	virtual USRTMContainer*	LoadRegion(float Lat, float Long, EIncompleteDataHandling HandlingType = EIncompleteDataHandling::RETURN_NULLPTR) const { return LoadRegion(Lat, Long, Lat + 1.0f, Long + 1.0f, HandlingType); }
+	virtual USRTMContainer*	LoadRegion(float Lat, float Long) const { return LoadRegion(Lat, Long, Lat + 1.0f, Long + 1.0f); }
 
 	/**
 	* Loads SRTM data from the required files in the folder specified in the plugin settings to populate the required region
@@ -75,6 +63,11 @@ public:
 	*
 	* @return A valid container or nullptr if there was an error
 	*/
-	virtual USRTMContainer*	LoadRegion(float StartLat, float StartLong, float EndLat, float EndLong, EIncompleteDataHandling HandlingType = EIncompleteDataHandling::RETURN_NULLPTR) const = 0;
+	virtual USRTMContainer*	LoadRegion(float StartLat, float StartLong, float EndLat, float EndLong) const = 0;
+
+	/**
+	* @return True if the filename is a valid .hgt file
+	*/
+	virtual bool IsValidFile(const TCHAR* Filename) const = 0;
 };
 
