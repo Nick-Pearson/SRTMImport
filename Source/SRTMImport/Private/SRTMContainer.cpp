@@ -7,7 +7,7 @@ int32 USRTMContainer::Get(int32 X, int32 Y) const
 
 int16 USRTMContainer::Get_Raw(int32 X, int32 Y) const
 {
-	int32 DataIdx = X + (Y * DimensionSize.Y);
+	int32 DataIdx = X + (Y * DimensionSize.X);
 
 	if (!RawData.IsValidIndex(DataIdx)) return 0;
 

@@ -33,5 +33,5 @@ public:
 
 	int16 Get_Raw(int32 X, int32 Y) const;
 
-	FORCEINLINE int16 Get_Unchecked(int32 X, int32 Y) const { return RawData[X + (Y * DimensionSize.Y)]; }
+	FORCEINLINE int16 Get_Unchecked(int32 X, int32 Y) const { return RawData[X + (Y * DimensionSize.X)]; }
 };

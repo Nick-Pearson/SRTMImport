@@ -15,6 +15,7 @@ namespace UnrealBuildTool.Rules
             });
 
             PrivateDependencyModuleNames.AddRange(new string[] {
+                "HTTP"
             });
 
             if(Target.bBuildEditor)

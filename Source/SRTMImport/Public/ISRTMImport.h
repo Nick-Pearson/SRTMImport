@@ -6,6 +6,8 @@
 
 class USRTMContainer;
 
+DECLARE_DELEGATE_OneParam(FOnSRTMLoadCompleted, USRTMContainer* /* DataObject */);
+
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules 
  * within this plugin.
@@ -44,26 +46,19 @@ public:
 	virtual USRTMContainer*	LoadFile(const FString& Filepath) const = 0;
 	
 	/**
-	* Loads the data from the provided filepath into an SRTM container using the provided Lat and Long
-	*
-	* @return A valid container or nullptr if there was an error
-	*/
-	virtual USRTMContainer*	LoadFile(const FString& Filepath, int32 FileLat, int32 FileLong) const = 0;
-
-	/**
 	* Loads SRTM data from the required files in the folder specified in the plugin settings to populate the required region
 	*
-	* @return A valid container or nullptr if there was an error
+	* Will call delegate with  valid container or nullptr if there was an error
 	*/
-	virtual USRTMContainer*	LoadRegion(float Lat, float Long) const { return LoadRegion(Lat, Long, Lat + 1.0f, Long + 1.0f); }
+	virtual void	LoadRegion(float Lat, float Long, FOnSRTMLoadCompleted Delegate) { return LoadRegion(Lat, Long, Lat + 1.0f, Long + 1.0f, Delegate); }
 
 	/**
 	* Loads SRTM data from the required files in the folder specified in the plugin settings to populate the required region
 	* NOTE: EndLat must be further west than StartLat, EndLong must be further north than StartLong
 	*
-	* @return A valid container or nullptr if there was an error
+	* Will call delegate with valid container or nullptr if there was an error
 	*/
-	virtual USRTMContainer*	LoadRegion(float StartLat, float StartLong, float EndLat, float EndLong) const = 0;
+	virtual void	LoadRegion(float StartLat, float StartLong, float EndLat, float EndLong, FOnSRTMLoadCompleted Delegate) = 0;
 
 	/**
 	* @return True if the filename is a valid .hgt file
